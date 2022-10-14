@@ -26,6 +26,7 @@ If those values change, how they change by the time the request is done processi
 
 
 **Bug**
+
 Before:
 
 <img width="290" alt="Screen Shot 2022-10-14 at 2 56 40 PM" src="https://user-images.githubusercontent.com/114449002/195950062-b076b71c-1067-4ecb-bd55-e54ad5628d1d.png">
