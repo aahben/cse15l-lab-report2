@@ -12,31 +12,33 @@ class Handler implements URLHandler {
     // The one bit of state on the server: a number that will be manipulated by
     // various requests.
 
+    ArrayList<String> arr = new ArrayList<String>();
+    ArrayList<String> str = new ArrayList<String>();
+    int num = 0;
+    String searched = "";
+
     public String handleRequest(URI url) {
-        ArrayList<String> arr = new ArrayList<String>();
-        int num = 0;
         if (url.getPath().equals("/")) {
             return String.format("Items added: %d", num);
         }
         else if (url.getPath().contains("/search")) {
             String[] parameters = url.getQuery().split("s=");
-            ArrayList<String> str = new ArrayList<String>();
-            System.out.println(arr + "!");
+            //System.out.println(arr + "!");
             for (int i = 0; i < arr.size(); i++) {
                 if (arr.get(i).contains(parameters[1])) {
                     String item = arr.get(i);
-                    System.out.println(item);
                     str.add(item);
+                    searched += item + " ";
                 }
             }
-            return String.format("Searched " + arr);
+            return String.format(searched);
         } 
         else if (url.getPath().contains("/add")) {
             String[] parameters = url.getQuery().split("s=");
             arr.add(parameters[1]);
             num += 1;
-            System.out.println(parameters[1]);
-            System.out.println(arr);
+            //System.out.println(parameters[1]);
+            //System.out.println(arr);
             return String.format("Added " + parameters[1] + ", Items added is " + num);
             }
             return "404 Not Found!";
@@ -55,7 +57,6 @@ class SearchEngine {
         Server.start(port, new Handler());
     }
 }
-
 ```
 `main` and `handleRequest(URI url)` are called. 
 
@@ -74,7 +75,8 @@ As /add is used, num is incremented. For instance, when `/add?s=apple` is added 
 
 When something other than /add or /search is used the website would return `404 Not Found!`
 
-<img width="580" alt="Screen Shot 2022-10-14 at 8 53 49 PM" src="https://user-images.githubusercontent.com/114449002/195967665-73aa4789-1657-40d1-97c6-c9553d2553e9.png">
+<img width="567" alt="Screen Shot 2022-10-14 at 10 52 42 PM" src="https://user-images.githubusercontent.com/114449002/195971331-9136eb47-63af-40ac-8bb1-3443015545c8.png">
+
 
 When /search is utilized, it would return items previously added that contains the string after s= in `/search?s=`
 
