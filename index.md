@@ -64,6 +64,7 @@ After:
 The expected outcome were in reverse order, not in the same order like it is supposed to be in. 
 
 
+
 **Connection between the symptom and bug**
 
 The bugged filter method is returning each passing string to the front of the arrayList instead of the end the arrayList causing returned elements to be in reversed order. In the bugged filter method, if the string passes the StringChecker, then the passing string is added to index 0 of the new list. The bugged method filters strings according to StringChecker's condition and returns the passing strings in reversed order. By removing the specified place index 0 at `result.add(0, s);`, it solves the problem of returning passing strings to the front of the arrayList. 
