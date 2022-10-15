@@ -14,27 +14,36 @@ class Handler implements URLHandler {
 
     public String handleRequest(URI url) {
         ArrayList<String> arr = new ArrayList<String>();
-        if (url.getPath().contains("/search")) {
+        int num = 0;
+        if (url.getPath().equals("/")) {
+            return String.format("Items added: %d", num);
+        }
+        else if (url.getPath().contains("/search")) {
             String[] parameters = url.getQuery().split("s=");
             ArrayList<String> str = new ArrayList<String>();
+            System.out.println(arr + "!");
             for (int i = 0; i < arr.size(); i++) {
                 if (arr.get(i).contains(parameters[1])) {
-                    str.add(arr.get(i));
+                    String item = arr.get(i);
+                    System.out.println(item);
+                    str.add(item);
                 }
             }
-            System.out.println(str);
+            return String.format("Searched " + arr);
         } 
         else if (url.getPath().contains("/add")) {
             String[] parameters = url.getQuery().split("s=");
             arr.add(parameters[1]);
-            
-            return String.format("Added", parameters[1]);
+            num += 1;
+            System.out.println(parameters[1]);
+            System.out.println(arr);
+            return String.format("Added " + parameters[1] + ", Items added is " + num);
             }
             return "404 Not Found!";
     }
 }
 
-class NumberServer {
+class SearchEngine {
     public static void main(String[] args) throws IOException {
         if(args.length == 0){
             System.out.println("Missing port number! Try any number between 1024 to 49151");
@@ -48,9 +57,26 @@ class NumberServer {
 }
 
 ```
-Which methods in your code are called
-What the values of the relevant arguments to those methods are, and the values of any relevant fields of the class
-If those values change, how they change by the time the request is done processing
+`main` and `handleRequest(URI url)` are called. 
+
+<img width="525" alt="Screen Shot 2022-10-14 at 8 47 00 PM" src="https://user-images.githubusercontent.com/114449002/195967470-84468adf-4601-4967-a976-4d0e081e0057.png">
+
+Initially, when the server `http://localhost:4000` first starts, num is 0 and the items added to the arrayList is 0. 
+
+
+<img width="578" alt="Screen Shot 2022-10-14 at 8 49 18 PM" src="https://user-images.githubusercontent.com/114449002/195967561-2d4f88a2-c04a-458b-b500-7145406d40bb.png">
+
+
+As /add is used, num is incremented. For instance, when `/add?s=apple` is added to the end of `http://localhost:4000`, num would increment by one. Additionally, a message of `Added apple, Items added is 1` would appear indicating the item being added and the count of items added being 1. 
+
+
+<img width="578" alt="Screen Shot 2022-10-14 at 8 50 44 PM" src="https://user-images.githubusercontent.com/114449002/195967575-895c7304-6993-41ea-ac44-afaf3cfface6.png">
+
+When something other than /add or /search is used the website would return `404 Not Found!`
+
+<img width="580" alt="Screen Shot 2022-10-14 at 8 53 49 PM" src="https://user-images.githubusercontent.com/114449002/195967665-73aa4789-1657-40d1-97c6-c9553d2553e9.png">
+
+When /search is utilized, it would return items previously added that contains the string after s= in `/search?s=`
 
 ## Part 2 
 ### Array Methods 
