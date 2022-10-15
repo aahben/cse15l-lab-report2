@@ -44,8 +44,24 @@ When checking for the lowest value to add to sum, the method removes all duplica
 ### List Methods 
 **Failure-inducing Input**
 
+<img width="1158" alt="Screen Shot 2022-10-14 at 6 26 22 PM" src="https://user-images.githubusercontent.com/114449002/195963092-026ce9bd-c3f6-4cfd-a695-a87dec763a43.png">
+
+
 **Symptoms**
+
+<img width="1158" alt="Screen Shot 2022-10-14 at 6 26 03 PM" src="https://user-images.githubusercontent.com/114449002/195963084-7837bc5e-2f7b-4c85-9844-ccbb723e50a6.png">
+
 
 **Bug**
 
+Before: 
+
+<img width="608" alt="Screen Shot 2022-10-14 at 6 02 37 PM" src="https://user-images.githubusercontent.com/114449002/195963070-0b7371f7-fe8b-4d89-8d98-f6df8c14bc78.png">
+
+After:
+
+<img width="607" alt="Screen Shot 2022-10-14 at 6 03 03 PM" src="https://user-images.githubusercontent.com/114449002/195963063-25c78d63-252f-4abf-990f-dd524088f8a2.png">
+The expected outcome were in reverse order, not in the same order like it is supposed to be in. In the bugged filter method, if the string passes the StringChecker, then the passing string is added to index 0 of the new list. This method then filters StringChecker's condition and returns the passing strings in reversed order. 
+
 **Connection between the symptom and bug**
+The bugged filter method is returning each passing string to the front of the arrayList instead of the end the arrayList causing returned elements to be in reversed order. 
