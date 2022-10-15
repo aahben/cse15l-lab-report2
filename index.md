@@ -62,7 +62,7 @@ After:
 
 <img width="607" alt="Screen Shot 2022-10-14 at 6 03 03 PM" src="https://user-images.githubusercontent.com/114449002/195963063-25c78d63-252f-4abf-990f-dd524088f8a2.png">
 The expected outcome were in reverse order, not in the same order like it is supposed to be in. 
-
+k
 
 
 **Connection between the symptom and bug**
